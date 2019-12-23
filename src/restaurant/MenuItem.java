@@ -1,5 +1,7 @@
 package restaurant;
 
+import java.util.Objects;
+
 enum Category{
     APPETIZER, MAIN_COURSE, DESSERT;
 }
@@ -44,7 +46,32 @@ public class MenuItem {
     public  Category getCategory(){
         return this.category;
     }
+
+    //2. tell if a menu item is new
     public Status getStatus(){
         return this.status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return getDescription().equals(menuItem.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDescription());
+    }
+
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "price=" + price +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                ", status=" + status +
+                '}';
     }
 }
